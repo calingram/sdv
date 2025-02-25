@@ -3,13 +3,85 @@
 <head>
     <title>FAQ</title>
     <style>
-        /* Your accordion CSS here */
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Roboto+Slab:wght@400;700&display=swap');
 
-        .accordion {
-          /* rest of your css */
+        body {
+            background-color: white; /* Explicit background */
+            color: #333; /* Explicit text color */
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            line-height: 1.75;
+            margin: 0;
+            padding: 20px; /* Add some padding around the body */
         }
-        /* rest of your css */
+
+        .carrd-embed-container {
+            width: 100%;
+            max-width: 800px; /* Limit width */
+            margin: 0 auto; /* Center */
+        }
+
+        .accordion {
+            background-color: white;
+            color: #8C8A88;
+            cursor: pointer;
+            padding: 1rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1rem;
+            transition: 0.4s;
+            border-bottom: 1px solid #eee;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 400;
+            display: block;
+        }
+
+        .active, .accordion:hover {
+            background-color: #f0f0f0;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 0.5rem;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .panel {
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            display: block;
+        }
+
+        .panel-content {
+            padding: 1rem;
+            font-family: 'Lato', sans-serif;
+            color: #8C8A88;
+            font-weight: 300;
+            text-align: left;
+            line-height: 1.75;
+            display: block;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            .accordion {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+            }
+            .panel-content {
+                padding: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -26,7 +98,7 @@
                 <p>We build strategically, not just aesthetically. Rooted in the Designing Value's Four-Pillar consultancy framework, our websites focus on building systems prepared for growth, distinctive positioning, and consistent online presence. Achieving clarity and tangible results are key.</p>
             </div>
         </div>
-        <button class="accordion">Section 3</button>
+        <button class="accordion">It's your core business story – your value, expertise and why clients choose you. Clear communication wins. We'll help you define and weave this story throughout your marketing assests for maximum impact and client connection.</button>
         <div class="panel">
             <div class="panel-content">
                 <p>It's your core business story – your value, expertise and why clients choose you. Clear communication wins. We'll help you define and weave this story throughout your marketing assests for maximum impact and client connection.</p>
@@ -58,9 +130,20 @@
         </div>
     </div>
     <script>
-        /* Your accordion JavaScript here */
         var acc = document.getElementsByClassName("accordion");
-        /* rest of your js */
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
     </script>
 </body>
 </html>
